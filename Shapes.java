@@ -1,7 +1,17 @@
 //TwoDShape is a superclass
 class TwoDShape {
-    double width;
-    double height;
+    private double width;
+    private double height;
+
+    TwoDShape(double w, double h) {
+        width = w;
+        height = h;
+    }
+
+    double getWidth() {return width;}
+    double getHeight() { return height;}
+    void setWidth(double w) {width = w;}
+    void setHeight(double h) {height = h;}
 
     void showDim() {
         System.out.println("Width and height are " + width + " " + height);
@@ -10,11 +20,16 @@ class TwoDShape {
 
 //Triangle inherits from TwoDShape
 class Triangle extends TwoDShape {
-    String style;
+    private String style;
+
+    Triangle(String s, double w, double h) {
+        super(w,h);//feed base class ctor
+        style = s;
+    }
 
     //Triangle can access TwoDShape member variables
     double area() {
-        return width * height / 2;
+        return getWidth() * getHeight() / 2;
     }
 
     void showStyle() {
@@ -25,16 +40,8 @@ class Triangle extends TwoDShape {
 class Shapes {
     public static void main(String args[])
     {
-        Triangle t1 = new Triangle();
-        Triangle t2 = new Triangle();
-
-        t1.width = 4.0;
-        t1.height = 4.0;
-        t1.style = "filled";
-
-        t2.width = 8.0;
-        t2.height = 12.0;
-        t2.style = "outlined";
+        Triangle t1 = new Triangle("filled", 4.0, 4.0);
+        Triangle t2 = new Triangle("outlined", 8.0, 12.0);
 
         System.out.println("Info t1: ");
         t1.showStyle();
