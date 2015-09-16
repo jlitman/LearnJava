@@ -1,6 +1,6 @@
 //Show dynamic method dispatch
 //TwoDShape is a superclass
-class TwoDShape {
+abstract class TwoDShape {
     private double width;
     private double height;
     private String name;
@@ -41,10 +41,7 @@ class TwoDShape {
         System.out.println("Width and height are " + width + " " + height);
     }
 
-    double area() {
-        System.out.println("area method must be overridden");
-        return 0.0;
-    }
+    abstract double area(); 
 }
 
 //Triangle inherits from TwoDShape
@@ -113,12 +110,13 @@ class Rectangle extends TwoDShape {
 class DynamicShapes {
     public static void main(String args[])
     {
-        TwoDShape shapes[] = new TwoDShape[5];
+        TwoDShape shapes[] = new TwoDShape[4];
         shapes[0] = new Triangle("outlined", 8.0, 12.0);
         shapes[1] = new Rectangle(10);
         shapes[2] = new Rectangle(10,4);
         shapes[3] = new Triangle(7.0);
-        shapes[4] = new TwoDShape(10,20,"generic");
+        //now that base class is abstract, can't instantiate the base class
+        //shapes[4] = new TwoDShape(10,20,"generic");
 
         for(int i=0;i<shapes.length;i++)
         {
