@@ -107,14 +107,30 @@ class Rectangle extends TwoDShape {
     }
 }
 
+class Circle extends TwoDShape {
+    Circle(double r) {
+        super(r, "circle");
+    }
+
+    Circle(Circle ob) {
+        super(ob);
+    }
+
+    double area() {
+        double radius = getWidth()/2;
+        return radius * radius * 3.14159;
+    }
+}
+
 class DynamicShapes {
     public static void main(String args[])
     {
-        TwoDShape shapes[] = new TwoDShape[4];
+        TwoDShape shapes[] = new TwoDShape[5];
         shapes[0] = new Triangle("outlined", 8.0, 12.0);
         shapes[1] = new Rectangle(10);
         shapes[2] = new Rectangle(10,4);
         shapes[3] = new Triangle(7.0);
+        shapes[4] = new Circle(3.4);
         //now that base class is abstract, can't instantiate the base class
         //shapes[4] = new TwoDShape(10,20,"generic");
 
