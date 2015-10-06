@@ -39,12 +39,13 @@ class ShowFile {
             }while( i!= -1);
         } catch(IOException ex) {
             System.out.println("Error reading file");
-        }
-
-        try  {
-            fin.close();
-        }catch (IOException ex){
-            System.out.println("Error closing file");
+        } finally {
+            //use finally block
+            try  {
+                fin.close();
+            }catch (IOException ex){
+                System.out.println("Error closing file");
+            }
         }
     }
 }
