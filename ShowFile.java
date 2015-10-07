@@ -7,10 +7,8 @@
 import java.io.*;
 
 class ShowFile {
-    public static void main(String args[]) 
-        throws IOException {
+    public static void main(String args[]) throws IOException {
         int i;
-        FileInputStream fin;
         String filename;
 
         if(args.length != 1) {
@@ -24,28 +22,16 @@ class ShowFile {
             filename = args[0];
         }
 
-        try {
-            fin = new FileInputStream(filename);
-        } catch (FileNotFoundException ex) {
-            System.out.println("File not found");
-            return;
-        }
-
-        try {
+        //try with resources
+        try(FileInputStream fin = new FileInputStream(filename)) {
             //read bytes until EOF is encountered
             do {
                 i = fin.read();
                 if(i != -1) System.out.print((char)i);
-            }while( i!= -1);
+            } while( i!= -1);
+
         } catch(IOException ex) {
-            System.out.println("Error reading file");
-        } finally {
-            //use finally block
-            try  {
-                fin.close();
-            }catch (IOException ex){
-                System.out.println("Error closing file");
-            }
-        }
+            System.out.println("I/O Error: " + ex);
+        } 
     }
 }
