@@ -1,22 +1,23 @@
 class MyThread implements Runnable {
-    String threadName;
+    Thread thread;
 
     MyThread(String name) {
-        threadName = name;
+        thread = new Thread(this, name);
+        thread.start();
     }
 
     public void run() {
-        System.out.println(threadName + " starting");
+        System.out.println(thread.getName() + " starting");
         try {
             for(int count  = 0; count < 10; count++) {
                 Thread.sleep(400);
-                System.out.println("In " + threadName + ", count is " +
+                System.out.println("In " + thread.getName() + ", count is " +
                         count);
             }
         } catch(InterruptedException ex) {
-            System.out.println(threadName + " interrupted");
+            System.out.println(thread.getName() + " interrupted");
         }
-        System.out.println(threadName + " terminating");
+        System.out.println(thread.getName() + " terminating");
     }
 }
 
