@@ -34,7 +34,7 @@ class MoreThreads {
         AThread t2 = new AThread("Child 2");
         AThread t3 = new AThread("Child 3");
 
-        for(int i = 0; i< 50; i++) {
+        do {
             System.out.print(".");
             try {
                 Thread.sleep(100);
@@ -42,7 +42,8 @@ class MoreThreads {
             catch(InterruptedException ex) {
                 System.out.println("Main thread interuppted.");
             }
-        }
+        } while(t1.thrd.isAlive() || t2.thrd.isAlive() || t3.thrd.isAlive());
+
         System.out.println("Main thread ending.");
     }
 }
